@@ -1,6 +1,6 @@
+// Jacob Claytor
 // SortedDriver.cpp
-
-// tom bailey   1445  25 mar 2014
+// 
 // Construct sorted sequences and call functions that 
 //   process the sorted sequences.
 
@@ -12,6 +12,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stack>
 
 
 using namespace std;
@@ -63,8 +64,44 @@ getWords(size_t numWords, size_t wordLength, string alphabet)
 double
 mostIsolated(vector<double> & number)
 {
-	// STUB  STUB  STUB
-	return -123.456;
+	double diff1;
+	double diff2 = 0;
+	int next = 1;
+	int isolated = 0;
+	double closest;
+
+	double vall;
+	double valr;
+	double localClosest;
+	for (int i = 0; i < number.size() - 1; i++)
+	{
+		if (i == 0)
+		{
+			closest = abs(number[i] - number[next]);
+		}
+		else
+		{
+			vall = abs(number[i] - number[i - 1]);
+			valr = abs(number[i] - number[next]);
+			if (vall > valr)
+			{
+				localClosest = valr;
+			}
+			else
+			{
+				localClosest = vall;
+			}
+		}
+		if (closest < localClosest)
+		{
+			closest = localClosest;
+		}
+		next++;
+	}
+	cout << "Greatest closest difference is: " << closest << endl;
+	cout << "Largest difference is: " << diff2 << endl;
+	cout << "Most isolated number is: " << number[isolated] << endl;
+	return number[isolated];
 }
 
 
